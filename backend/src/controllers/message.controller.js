@@ -1,4 +1,5 @@
 import User from "../modules/user.model.js";
+import Message from "../modules/message.model.js";
 
 export const getUsersForSidebar = async (req,res) => {
     try{
@@ -10,4 +11,23 @@ export const getUsersForSidebar = async (req,res) => {
         console.log(err);
         res.status(500).json({message:"Something went wrong"});
     }
+}
+
+export const getMessages = async (req,res) => {
+try{
+    const {id:userToChatId} = req.params;
+    const senderId = req.user._id
+
+    const messages = await Message.find({
+        //find all messages where:
+        $or: [
+            {senderId: senderId,receiverId: userToChatId},
+            {senderId:userToChatId,receiverId:senderId}
+        ]
+    })
+    res.status(200).json(messages);
+} catch(error){
+    console.log(error);
+    res.status(500).json({message:"Something went wrong"});
+}
 }
