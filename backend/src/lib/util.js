@@ -9,4 +9,6 @@ const token = jwt.sign({userId},process.env.JWT_SECRET,{
         sameSite:"strict",
         secure:process.env.NODE_ENV !== "development"
     })
+return token;
+
 }

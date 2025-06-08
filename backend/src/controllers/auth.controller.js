@@ -1,7 +1,8 @@
-import User from "../models/user.model.js"
+import User from "../modules/user.model.js"
 import bcrypt from "bcryptjs";
+import {generateToken} from "../lib/util.js";
 export const signup = async (req, res) => {
-    const {fullName, req, password} = req.body;
+    const {fullName, reqt, password} = req.body;
 
     try {
         if (password.length < 6) {
@@ -19,10 +20,24 @@ export const signup = async (req, res) => {
                 email,
                 password:hashedPassword,
             })
-            if (!newUser) return res.status(400).json({message: 'User not found'})
+            if (newUser) {
+                generateToken(newUser._id,res)
+                await newUser.save();
+                res.status(201).json({
+                    _id: newUser._id,
+                    email: newUser.email,
+                    profilePic: newUser.profilePic,
+                });
+            }
+            else{
+                res.status(401).json({
+                    message: 'Invalid Credentials',
+                })
+            }
         }
     } catch (error) {
-
+        console.log("Error creating user", error),
+        res.status(500).json({message: 'Internal Server Error'})
     }
     res.send("sign up");
 }
