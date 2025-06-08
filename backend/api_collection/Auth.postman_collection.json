@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "3aa08b89-e8d4-4e31-ab69-315bdaeb6798",
+		"name": "Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45708306",
+		"_collection_link": "https://yoanivanov-995081.postman.co/workspace/chat-app-tut~f96fa17c-7a22-48e9-837b-b804d7810984/collection/45708306-3aa08b89-e8d4-4e31-ab69-315bdaeb6798?action=share&source=collection_link&creator=45708306"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "checkAuth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/api/auth/check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"auth",
+						"check"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

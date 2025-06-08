@@ -89,3 +89,7 @@ console.log("error in update profile", error);
 res.status(500).json({message:"Internal Server Error"})
 }
 }
+
+export const checkAuth = (req,res) =>{
+    //To do: complete
+}
